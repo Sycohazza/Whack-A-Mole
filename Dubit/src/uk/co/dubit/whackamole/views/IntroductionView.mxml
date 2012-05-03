@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<views:IntroductionViewBase xmlns:fx="http://ns.adobe.com/mxml/2009" 
+							xmlns:s="library://ns.adobe.com/flex/spark" 
+							xmlns:mx="library://ns.adobe.com/flex/mx"
+							xmlns:views="uk.co.dubit.whackamole.views.*"
+							styleName="stretchToContainer">
+	
+	<fx:Script>
+		<![CDATA[
+			protected function easy_clickHandler(event:MouseEvent):void
+			{
+				if(medium.selected || hard.selected){
+					medium.selected = false;
+					hard.selected = false;
+				}
+			}
+			
+			protected function medium_clickHandler(event:MouseEvent):void
+			{
+				if(easy.selected || hard.selected){
+					easy.selected = false;
+					hard.selected = false;
+				}
+			}
+		
+			protected function hard_clickHandler(event:MouseEvent):void
+			{
+				if(easy.selected || medium.selected){
+					easy.selected = false;
+					medium.selected = false;
+				}
+			}
+			[Embed(source="/../assets/intro_bg.png")]
+			[Bindable]
+			public var introBG:Class;		
+			
+			
+		]]>
+	</fx:Script>
+	
+	
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	<s:VGroup width="100%" height="100%" paddingBottom="0" paddingLeft="0" paddingRight="0" paddingTop="0">
+		
+		<s:BorderContainer backgroundImage="{ introBG }" styleName="roundedBorder" minHeight="0" minWidth="0" width="100%" height="100%" >
+			<s:CheckBox id="easy" bottom="60" label="Easy" click="easy_clickHandler(event)"
+						color="#FFFFFF" fontWeight="bold" horizontalCenter="-75"/>
+			<s:CheckBox id="medium" bottom="60" label="Medium" click="medium_clickHandler(event)"
+						color="#FFFFFF" fontWeight="bold" horizontalCenter="0"/>
+			<s:CheckBox id="hard" bottom="60" label="Hard" click="hard_clickHandler(event)"
+						color="#FFFFFF" fontWeight="bold" horizontalCenter="75"/>
+			<s:Label id="error" bottom="80" width="60%" backgroundAlpha="0.0" color="#FFFFFF"
+					 fontFamily="Arial" fontWeight="bold" horizontalCenter="0" text=""
+					 textAlign="center"/>
+			<s:Button id="startButton" click="onStartButtonClick()" label="Start!" horizontalCenter="0" bottom="10"/>
+			<s:Image top="0" width="300" height="150" horizontalCenter="0" source="@Embed('assets/logo.png')"/>
+			<s:Image horizontalCenter="0" source="@Embed('assets/instructions.png')" verticalCenter="0"/>
+		</s:BorderContainer>
+		
+	</s:VGroup>
+	
+</views:IntroductionViewBase>

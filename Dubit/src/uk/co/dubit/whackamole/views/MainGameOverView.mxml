@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<views:MainGameOverViewBase xmlns:fx="http://ns.adobe.com/mxml/2009"
+							xmlns:s="library://ns.adobe.com/flex/spark"
+							xmlns:mx="library://ns.adobe.com/flex/mx"
+							xmlns:views="uk.co.dubit.whackamole.views.*"
+							xmlns:components="uk.co.dubit.whackamole.views.components.*"
+							xmlns:framework="uk.co.dubit.whackamole.framework.*"
+							styleName="stretchToContainer">
+	<views:states>
+		<s:State name="State2"/>
+	</views:states>
+	
+	<fx:Script> 
+		<![CDATA[
+			[Embed(source="/../assets/grass_bg.png")]
+			[Bindable]
+			public var gameBG:Class;
+			
+			[Embed(source="/../assets/achievement_bg.png")]
+			[Bindable]
+			public var achieveBG:Class;
+			
+			[Embed(source="/../assets/intro_bg.png")]
+			[Bindable]
+			public var introBG:Class;
+		]]>
+	</fx:Script>
+	
+	<s:VGroup width="100%" height="100%" paddingBottom="0" paddingLeft="0" paddingRight="0" paddingTop="0" gap="10">
+		<s:BorderContainer backgroundImage="{ introBG }" borderVisible="false" minHeight="0" minWidth="0" width="100%" height="100%" >
+		<s:HGroup width="100%" height="100%" gap="10">	
+			<s:VGroup width="66%" height="100%" gap="10">
+				
+				<s:BorderContainer backgroundImage="{achieveBG}" styleName="roundedBorder" minHeight="0" minWidth="0" width="100%" height="30" bottom="10" >
+					
+					<s:Label text="{ score }" left="29" verticalCenter="1"/>
+					<s:Label left="209" text="{ normalKills }" verticalCenter="1"/>
+					<s:Image x="7" y="2" width="18" height="20" smooth="true"
+							 source="@Embed('assets/trophy.png')"/>
+					<s:Image x="187" y="2" width="18" height="20" smooth="true"
+							 source="@Embed('assets/standard_mole.png')"/>
+					<s:Label left="258" text="{ fireKills }" verticalCenter="1"/>
+					<s:Image x="236" y="2" width="18" height="20" smooth="true"
+							 source="@Embed('assets/fire_mole.png')"/>
+					<s:Label left="307" text="{ zombieKills }" verticalCenter="1"/>
+					<s:Image x="285" y="2" width="18" height="20" smooth="true"
+							 source="@Embed('assets/zombie_mole.png')"/>
+				</s:BorderContainer>
+				
+				<s:BorderContainer backgroundImage="{gameBG}" styleName="roundedBorder" minHeight="0" minWidth="0" width="100%" height="100%" >
+					
+					<s:Button id="Play0" label="Play Again" click="Play_clickHandler(event)"
+							  horizontalCenter="-60" verticalCenter="100"/>
+					<s:Button id="Menu" label="Main Menu" click="Menu_clickHandler(event)"
+							  horizontalCenter="60" verticalCenter="100"/>
+					<s:Image top="25" horizontalCenter="0" source="@Embed('assets/gameover.png')"/>
+					<s:Label color="#FFFFFF" fontSize="17" fontWeight="bold" horizontalCenter="0"
+							 text="You Scored:" verticalCenter="-25"/>
+					<s:Label color="#E5E5E5" fontSize="40" fontWeight="bold" horizontalCenter="0"
+							 text="{ score }" verticalCenter="20"/>
+				</s:BorderContainer>
+				
+			</s:VGroup>
+		
+			<s:VGroup width="33%" height="100%" gap="10">
+				
+				<s:BorderContainer backgroundImage="{achieveBG}" styleName="roundedBorder" minHeight="0" minWidth="0" width="100%" height="30" >
+					<s:Label fontWeight="bold" horizontalCenter="0" text="Achievements"
+							 verticalCenter="0"/>
+					<s:Image x="6" y="2" width="23" height="23" smooth="false"
+							 source="@Embed('assets/achievement_logo.png')"/>
+				</s:BorderContainer>
+				
+				<s:BorderContainer backgroundImage="{achieveBG}" styleName="roundedBorder" minHeight="0" minWidth="0" width="100%" height="100%" >
+					<s:Label x="31" y="11" fontSize="15" fontWeight="bold" text="Apprentice"/>
+					<s:CheckBox id="Apprentice" x="11" y="6" chromeColor="#00FF24" color="#04C924"
+								enabled="false" focusColor="#C90000" selected="false"
+								symbolColor="#FF0000"/>
+					<s:CheckBox id="Master" x="11" y="53" chromeColor="#00FF06" color="#0A9807"
+								enabled="false" focusColor="#70B2EE" selected="false"
+								symbolColor="#FF0000"/>
+					<s:CheckBox id="Massacre" x="10" y="103" chromeColor="#18FF00" color="#0A9807"
+								enabled="false" selected="false" symbolColor="#FF0000"/>
+					<s:CheckBox id="Fireman" x="10" y="153" chromeColor="#18FF00" color="#0A9807"
+								enabled="false" selected="false" symbolColor="#FF0000"/>
+					<s:CheckBox id="Apocolyptica" x="10" y="203" chromeColor="#42FF00"
+								color="#0A9807" enabled="false" selected="false"
+								symbolColor="#FF0000"/>
+					<s:CheckBox id="Soft" x="10" y="253" chromeColor="#12FF00" color="#0A9807"
+								enabled="false" selected="false" symbolColor="#FF0000"/>
+					<s:Label x="30" y="58" fontSize="15" fontWeight="bold" text="Master"/>
+					<s:Label x="27" y="258" fontSize="15" fontStyle="normal" fontWeight="bold"
+							 text="Soft touch"/>
+					<s:Label x="29" y="208" fontSize="15" fontWeight="bold" text="Apocolyptica"/>
+					<s:Label x="29" y="108" fontSize="15" fontWeight="bold" text="Mole massacre"/>
+					<s:Label x="29" y="158" fontSize="15" fontWeight="bold" text="Fireman"/>
+					<s:Label x="10" y="27" width="147" height="28"
+							 text="Kill over 15 moles during a single game"/>
+					<s:Label x="10" y="75" width="147" height="34"
+							 text="Kill more than 40 zombie moles in a single game"/>
+					<s:Label x="10" y="124" width="147" height="35"
+							 text="Kill over 55 moles during a game"/>
+					<s:Label x="10" y="174" width="147" height="25"
+							 text="Kill more than 10 fire moles in a single game"/>
+					<s:Label x="10" y="223" width="147" height="31"
+							 text="Kill more than 5 zombie moles in a game"/>
+					<s:Label x="10" y="275" width="147" height="29"
+							 text="Miss more than 30 moles during a game"/>
+				</s:BorderContainer>	
+				
+			</s:VGroup>
+		
+		
+		</s:HGroup>
+		
+		
+	</s:BorderContainer>
+	</s:VGroup>
+	
+	
+	
+	
+</views:MainGameOverViewBase>

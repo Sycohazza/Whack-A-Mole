@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<views:MoleHoleItemRendererBase xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				xmlns:s="library://ns.adobe.com/flex/spark" 
+				xmlns:mx="library://ns.adobe.com/flex/mx"
+				xmlns:views="uk.co.dubit.whackamole.views.*"
+				click="onClick()" autoDrawBackground="false"
+				width="80" height="80">
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	<fx:Script> 
+		<![CDATA[
+			[Embed(source="/../assets/mole_hole.png")]
+			[Bindable]
+			public var holeBG:Class;
+			[Bindable]
+			public var rollover : Boolean;
+			
+			[Embed(source="/../assets/blank.png")]
+			[Bindable]
+			public var blank:Class;
+			
+			protected function bordercontainer1_rollOverHandler(event:MouseEvent):void
+			{
+				rollover = true;
+			}
+			
+			protected function bordercontainer1_rollOutHandler(event:MouseEvent):void
+			{
+				rollover = false;
+			}
+			
+			
+		]]>
+	</fx:Script>
+	
+	
+	
+	<s:BorderContainer minWidth="0" minHeight="0" backgroundImage="{holeBG}" baseline="0"
+					   borderVisible="false" buttonMode="true" mouseChildren="false"
+					   rollOut="bordercontainer1_rollOutHandler(event)"
+					   rollOver="bordercontainer1_rollOverHandler(event)" rollOverColor="#81DC00"
+					   styleName="roundedBorder stretchToContainer"
+					   useHandCursor="{  moleHole.mole != null  || moleHole.firemole != null || moleHole.zombiemole != null}">
+		<s:BitmapImage source="@Embed('/../assets/standard_mole.png')" visible="{ moleHole.mole != null }" horizontalCenter="0" verticalCenter="0" />
+		<s:BitmapImage source="@Embed('/../assets/fire_mole.png')" visible="{ moleHole.firemole != null }" horizontalCenter="0" verticalCenter="0" />
+		<s:BitmapImage source="@Embed('/../assets/zombie_mole.png')" visible="{ moleHole.zombiemole != null }" horizontalCenter="0" verticalCenter="0" />
+		<s:BitmapImage source="@Embed('/../assets/target.png')" visible="{ rollover == true }" horizontalCenter="0" verticalCenter="0" layoutDirection="rtl" />
+		<s:BitmapImage source="@Embed('/../assets/skull_and_crossbones.png')" visible="{ moleHole.mole &amp;&amp; moleHole.mole.dead || moleHole.firemole &amp;&amp; moleHole.firemole.dead || moleHole.zombiemole &amp;&amp; moleHole.zombiemole.dead }" horizontalCenter="0" verticalCenter="0" />
+	</s:BorderContainer>
+</views:MoleHoleItemRendererBase>
